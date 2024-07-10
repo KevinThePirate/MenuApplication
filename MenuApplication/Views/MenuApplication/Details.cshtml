@@ -1,0 +1,36 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model MenuApplication.Models.Dish
+@{
+    ViewData["Title"] = "Details"; 
+}
+<div class="container card mb-4 px-0 col-12 col-md-6">
+    <div style="max-height: 200px; display: flex; justify-content: center; align-items: center;" class="overflow-hidden">
+        <img src="@Model.ImageUrl" class="img-fluid" alt="@Model.Name" style="object-fit: cover; width: 100%; height: 100%;">
+    </div>
+ 
+    <div class="card-body p-4">
+    <div>
+		<h4>@Model.Name</h4>
+		<p>Price: €@Model.Price.ToString("N2")</p>
+	</div>
+		<div>
+			Ingredients:
+			<ul class="list-inline">
+            @foreach (var dishIngredient in Model.DishIngredients)
+            {
+                @if (dishIngredient.Ingredient != null)
+                {
+                    <li class="rounded bg-dark text-white list-unstyled p-2 m-2 text-center list-inline-item">@dishIngredient.Ingredient.Name</li>
+                }
+                else
+                {
+                    <li>Ingredient is null</li>
+                }
+            
+            }
+			</ul>
+		</div>
+    </div>
+</div>
